@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router";
+import { useLocation } from "react-router";
 
 import {
   Breadcrumb,
@@ -16,6 +16,7 @@ import { Badge } from "~/components/ui/badge";
 import { ModeToggle } from "../mode-toggle";
 import { NavUser } from "./nav-user";
 import { getUser } from "~/services/auth";
+import { crudConfigs } from "~/lib/mantencion/crud-config";
 
 interface BreadcrumbItem {
   label: string;
@@ -26,8 +27,124 @@ interface SiteHeaderProps {
   breadcrumbItems?: BreadcrumbItem[];
 }
 
+/**
+ * Mapa de rutas a nombres legibles para breadcrumbs
+ */
+const routeLabels: Record<string, string> = {
+  dashboard: "Dashboard",
+  mantencion: "Mantención",
+  zonas: "Zonas",
+  sectores: "Sectores",
+  nichos: "Nichos",
+  empalmes: "Empalmes",
+  marcas: "Marcas",
+  "ciclos-facturacion": "Ciclos de Facturación",
+  claves: "Claves",
+  "tipos-contrato": "Tipos de Contrato",
+  conceptos: "Conceptos",
+  tarifas: "Tarifas",
+  parametros: "Parámetros",
+  crear: "Crear",
+  editar: "Editar",
+};
+
+/**
+ * Genera breadcrumbs automáticamente desde la ruta actual
+ */
+function generateBreadcrumbsFromPath(pathname: string): BreadcrumbItem[] {
+  // Remover query params y hash
+  const path = pathname.split("?")[0].split("#")[0];
+
+  // Dividir la ruta en segmentos
+  const segments = path.split("/").filter(Boolean);
+
+  // Si está en la raíz, no mostrar breadcrumbs adicionales
+  if (
+    segments.length === 0 ||
+    (segments.length === 1 && segments[0] === "dashboard")
+  ) {
+    return [];
+  }
+
+  const breadcrumbs: BreadcrumbItem[] = [];
+  let currentPath = "";
+
+  segments.forEach((segment, index) => {
+    currentPath += `/${segment}`;
+    const isLast = index === segments.length - 1;
+    const nextSegment =
+      index + 1 < segments.length ? segments[index + 1] : null;
+
+    // Obtener el label del segmento
+    let label = routeLabels[segment] || segment;
+    let href: string | undefined = currentPath;
+
+    // Si el siguiente segmento es "crear" o "editar" y este es una entidad de mantención
+    // Combinar ambos en un solo breadcrumb
+    if (
+      (nextSegment === "crear" || nextSegment === "editar") &&
+      segment in crudConfigs
+    ) {
+      const config = crudConfigs[segment as keyof typeof crudConfigs];
+      if (nextSegment === "crear") {
+        label = `Crear ${config.singularName}`;
+      } else if (nextSegment === "editar") {
+        label = `Editar ${config.singularName}`;
+      }
+      // El href apunta a la entidad (sin crear/editar) para que sea clickeable
+      href = currentPath;
+      // Avanzar el path para que el siguiente segmento se salte
+      currentPath += `/${nextSegment}`;
+      // Si el siguiente es el último segmento (solo queda crear/editar), no mostrar href
+      if (index + 1 === segments.length - 1) {
+        href = undefined;
+      }
+    } else if (segment in crudConfigs) {
+      // Si es una entidad de mantención sin crear/editar
+      const config = crudConfigs[segment as keyof typeof crudConfigs];
+      label = config.pluralName;
+    }
+
+    // Capitalizar si no está en el mapa y no es una entidad de mantención
+    if (!routeLabels[segment] && !(segment in crudConfigs)) {
+      label =
+        segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, " ");
+    }
+
+    // Para el último segmento, no mostrar href
+    if (isLast) {
+      href = undefined;
+    }
+
+    // Si este segmento es "crear" o "editar" y el anterior fue procesado, saltarlo
+    if ((segment === "crear" || segment === "editar") && index > 0) {
+      const prevSegment = segments[index - 1];
+      if (prevSegment in crudConfigs) {
+        // Ya fue procesado en la iteración anterior, saltar este
+        return;
+      }
+    }
+
+    breadcrumbs.push({
+      label,
+      href,
+    });
+  });
+
+  return breadcrumbs;
+}
+
 export function SiteHeader({ breadcrumbItems }: SiteHeaderProps) {
   const user = getUser();
+  const location = useLocation();
+
+  // Generar breadcrumbs automáticamente si no se proporcionan
+  const autoBreadcrumbs = React.useMemo(() => {
+    if (breadcrumbItems) {
+      return breadcrumbItems;
+    }
+    return generateBreadcrumbsFromPath(location.pathname);
+  }, [location.pathname, breadcrumbItems]);
 
   // Detectar si es entorno UAT (puerto 3000) o Core
   const isUAT =
@@ -46,20 +163,12 @@ export function SiteHeader({ breadcrumbItems }: SiteHeaderProps) {
           <h1 className="text-sm sm:text-base font-medium">
             <Breadcrumb>
               <BreadcrumbList className="text-xs sm:text-sm">
-                <BreadcrumbLink
-                  href="/"
-                  className="truncate max-w-[60px] sm:max-w-none"
-                >
-                  Dashboard
-                </BreadcrumbLink>
-                <BreadcrumbSeparator className="hidden sm:block" />
-                {/* Renderiza los items del prop */}
-                {breadcrumbItems?.map((item, index) => (
+                {autoBreadcrumbs.map((item, index) => (
                   <React.Fragment key={index}>
                     <BreadcrumbItem className="hidden sm:block"></BreadcrumbItem>
                     <BreadcrumbItem
                       className={
-                        index === breadcrumbItems.length - 1
+                        index === autoBreadcrumbs.length - 1
                           ? "block"
                           : "hidden sm:block"
                       }
@@ -77,7 +186,7 @@ export function SiteHeader({ breadcrumbItems }: SiteHeaderProps) {
                         </BreadcrumbPage>
                       )}
                     </BreadcrumbItem>
-                    {index < (breadcrumbItems?.length || 0) - 1 && (
+                    {index < autoBreadcrumbs.length - 1 && (
                       <BreadcrumbSeparator className="hidden sm:block" />
                     )}
                   </React.Fragment>

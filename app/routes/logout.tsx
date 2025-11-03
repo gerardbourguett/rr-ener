@@ -7,5 +7,5 @@ export async function clientAction() {
 }
 
 export async function clientLoader() {
-  throw redirect("/");
+  throw redirect("/dashboard");
 }
