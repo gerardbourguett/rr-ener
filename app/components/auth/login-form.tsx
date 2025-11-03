@@ -56,7 +56,7 @@ export function LoginForm({
         });
 
         // Obtener la ruta desde donde vino el usuario, o usar home por defecto
-        const from = (location.state as any)?.from?.pathname || "/";
+        const from = (location.state as any)?.from?.pathname || "/dashboard";
         navigate(from, { replace: true });
       } catch (error) {
         const message =

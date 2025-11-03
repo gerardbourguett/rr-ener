@@ -1,5 +1,5 @@
 /* Ciclos de Facturación */
-// buscarCiclo, obtenerCiclo{id}, crearCiclo, modificarCiclo
+// GET /buscarCiclo, GET /obtenerCiclo/{id}, POST /crearCiclo, PUT /modificarCiclo
 export type CiclosFacturacion = {
   id: number;
   descripcion: string;
@@ -10,7 +10,7 @@ export type CiclosFacturacion = {
 };
 
 /* Claves */
-// buscarClaves, obtenerClave{id}, crearClave, modificarClave
+// GET /buscarClaves, GET /obtenerClave/{id}, POST /crearClave, PUT /modificarClave
 export type Claves = {
   id: number;
   descripcion: string;
@@ -20,7 +20,7 @@ export type Claves = {
 };
 
 /* Conceptos */
-// buscarConceptos, obtenerConcepto{id}, crearConcepto, modificarConcepto
+// GET /buscarConceptos, GET /obtenerConcepto/{id}, POST /crearConcepto, PUT /modificarConceptos
 export type Conceptos = {
   id: number;
   denominacion: string;
@@ -31,13 +31,14 @@ export type Conceptos = {
   asociadoDescripcion?: string | null;
 };
 
+// GET /combo-asociado-conoceptos
 export type ComboAsociadoConceptos = {
   id: number;
   descripcion: string;
 };
 
 /* Empalme */
-// buscarEmpalmes, obtenerEmpalme{id}, crearEmpalmes, modificarEmpalmes{id}
+// GET /buscarEmpalmes, GET /obtenerEmpalme/{codigo}, POST /crearEmpalmes, PUT /modificarEmpalmes
 export type Empalme = {
   codigo: string;
   nombre: string;
@@ -47,7 +48,7 @@ export type Empalme = {
 };
 
 /* Marca */
-// buscarMarca, obtenerMarca{id}, crearMarcaM, modificarMarca
+// GET /buscarMarca, GET /obtenerMarca/{codigo}, POST /crearMarcaM, PUT /modificarMarca
 export type Marca = {
   id?: number;
   codigo: string;
@@ -55,7 +56,7 @@ export type Marca = {
 };
 
 /* Nichos */
-// buscarNichos, obtenerNicho{id}, crearNicho, modificarNicho
+// GET /buscarNichoM, GET /obtenerNicho/{id}, POST /crearNichoM, PATCH /nichos/{id}
 export type Nicho = {
   id: number;
   codigo?: string;
@@ -80,7 +81,7 @@ export type UpdateNichoRequest = {
 };
 
 /* Parámetro */
-// buscarParametros, obtenerParametro{id}, crearParametro, modificarParametro
+// GET /buscarParametro, GET /obtenerParametro/{id}, POST /crearParametro, PUT /modificarParametro
 export type Parametro = {
   id: number;
   descripcion: string;
@@ -90,7 +91,7 @@ export type Parametro = {
 };
 
 /* Sector */
-// buscarSectores, obtenerSector{id}, crearSector, modificarSector
+// GET /buscarSector, GET /obtenerSector/{id}, POST /crearSector, PUT /modificarSector/{id}
 export type Sectores = {
   id: number;
   nombre: string;
@@ -99,7 +100,7 @@ export type Sectores = {
 };
 
 /* Tipo Medidor */
-// buscarTipoMedidor, obtenerTipoMedidor{id}, crearTipoMedidor, modificarTipoMedidor
+// GET /buscarTarifa, GET /obtenerTarifa/{id}, POST /crearTarifa, PUT /modificarTarifa
 export type Tarifas = {
   id: number;
   codigo: string;
@@ -107,7 +108,7 @@ export type Tarifas = {
 };
 
 /* Tipos de Contrato */
-// buscarTiposContrato, obtenerTipoContrato{id}, crearTipoContrato, modificarTipoContrato
+// GET /buscarTipoContrato, GET /obtenerTipoContrato/{id}, POST /crearTipoContrato, PUT /modificarTipoContrato
 export type TiposContrato = {
   id: number;
   nombre: string;
@@ -115,7 +116,7 @@ export type TiposContrato = {
 };
 
 /* Zonas */
-// buscarZonas, obtenerZona{id}, crearZona, modificarZona
+// GET /buscarZona, GET /obtenerZona/{id}, POST /crearZona, PUT /modificarZona/{id}
 export type Zonas = {
   id: number;
   nombre: string;

@@ -16,7 +16,7 @@ export default function Layout() {
   }, [isAuth]);
 
   if (isAuth && !loading) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/dashboard" replace />;
   }
 
   return (

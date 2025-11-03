@@ -1,26 +1,16 @@
-import { redirect } from "react-router";
-import type { Route } from "./+types/home";
 import { getUser } from "~/services/auth";
+import type { Route } from "./+types/home";
 
 export function meta() {
   return [
-    { title: "Dashboard - Enerlova" },
-    { name: "description", content: "Dashboard del Sistema Enerlova" },
+    { title: "Dashboard - Agualova" },
+    { name: "description", content: "Dashboard del Sistema Agualova" },
   ];
 }
 
-export async function clientLoader() {
+export default function Home() {
+  // User comes from parent layout loader at /dashboard
   const user = getUser();
-
-  if (!user) {
-    throw redirect("/auth/login");
-  }
-
-  return { user };
-}
-
-export default function Home({ loaderData }: Route.ComponentProps) {
-  const { user } = loaderData;
 
   return (
     <div className="flex flex-1 flex-col gap-4 p-4">

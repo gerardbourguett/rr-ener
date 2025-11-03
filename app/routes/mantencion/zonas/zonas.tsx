@@ -1,14 +1,23 @@
 // oxlint-disable no-empty-pattern
 import React from "react";
-import type { Route } from "./+types/zonas";
 import { useLoaderData } from "react-router";
 import ZonasComponent from "~/components/mantencion/zonas/zonas-component";
 import type { Zonas } from "~/types/mantencion";
 import { api } from "~/lib/api";
+import type { Route } from "./+types/zonas";
+
+export function meta() {
+  return [
+    { title: "Zonas - Agualova" },
+    {
+      name: "description",
+      content: "Mantenimiento de Zonas del Sistema Agualova",
+    },
+  ];
+}
 
 export async function clientLoader({}: Route.ClientLoaderArgs) {
   const zonas = await api.get<Zonas[]>("/buscarZona");
-  console.log("zonas", zonas);
   return { zonas };
 }
 

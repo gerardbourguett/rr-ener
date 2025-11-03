@@ -62,7 +62,7 @@ export function ErrorBoundary() {
   };
 
   const handleGoHome = () => {
-    window.location.href = "/";
+    window.location.href = "/dashboard";
   };
 
   return (

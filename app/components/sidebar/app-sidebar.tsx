@@ -67,15 +67,15 @@ const data = {
       items: [
         {
           title: "Monitor de Lecturas",
-          url: "/mantencion/monitor-lecturas",
+          url: "/dashboard/mantencion/monitor-lecturas",
         },
         {
           title: "Exportar Lecturas",
-          url: "/mantencion/exportar-lecturas",
+          url: "/dashboard/mantencion/exportar-lecturas",
         },
         {
           title: "Importar Lecturas",
-          url: "/mantencion/importar-lecturas",
+          url: "/dashboard/mantencion/importar-lecturas",
         },
       ],
     },
@@ -86,43 +86,43 @@ const data = {
       items: [
         {
           title: "Periodo Facturación",
-          url: "/operaciones/periodo-facturacion",
+          url: "/dashboard/operaciones/periodo-facturacion",
         },
         {
           title: "Precios Cargos",
-          url: "/operaciones/precios-cargo",
+          url: "/dashboard/operaciones/precios-cargo",
         },
         {
           title: "Revisar Precio",
-          url: "/operaciones/revisar-precio",
+          url: "/dashboard/operaciones/revisar-precio",
         },
         {
           title: "Preparar Lecturas",
-          url: "/operaciones/preparar-lecturas",
+          url: "/dashboard/operaciones/preparar-lecturas",
         },
         {
           title: "Cerrar Lecturas",
-          url: "/mpntencicnes/cerrar-lecturas",
+          url: "/dashboard/mantencion/cerrar-lecturas",
         },
         {
           title: "Revisar Calculo Facturas",
-          url: "/operaciones/revisar-calculo-factura",
+          url: "/dashboard/operaciones/revisar-calculo-factura",
         },
         {
           title: "Cambio Medidor",
-          url: "/operaciones/cambio-medidor",
+          url: "/dashboard/operaciones/cambio-medidor",
         },
         {
           title: "Corte y Reposición",
-          url: "/operaciones/corte-reposicion",
+          url: "/dashboard/operaciones/corte-reposicion",
         },
         {
           title: "Crear Archivos SAP",
-          url: "/operaciones/crear-archivos-sap",
+          url: "/dashboard/operaciones/crear-archivos-sap",
         },
         {
           title: "Anular Factura Impresa",
-          url: "/operaciones/anular-factura-impresa",
+          url: "/dashboard/operaciones/anular-factura-impresa",
         },
       ],
     },
@@ -133,43 +133,43 @@ const data = {
       items: [
         {
           title: "Usuarios",
-          url: "/administracion/usuarios",
+          url: "/dashboard/administracion/usuarios",
         },
         {
           title: "Contratos",
-          url: "/administracion/contratos",
+          url: "/dashboard/administracion/contratos",
         },
         {
           title: "Clientes",
-          url: "/administracion/clientes",
+          url: "/dashboard/administracion/clientes",
         },
         {
           title: "Propietarios",
-          url: "/administracion/propietarios",
+          url: "/dashboard/administracion/propietarios",
         },
         {
           title: "Contratantes",
-          url: "/administracion/contratantes",
+          url: "/dashboard/administracion/contratantes",
         },
         {
           title: "Medidores",
-          url: "/administracion/medidores",
+          url: "/dashboard/administracion/medidores",
         },
         {
           title: "Acometida",
-          url: "/administracion/acometida",
+          url: "/dashboard/administracion/acometida",
         },
         {
           title: "Cargo Facturable",
-          url: "/administracion/cargo-facturable",
+          url: "/dashboard/administracion/cargo-facturable",
         },
         {
           title: "Cargo Tipo Contrato",
-          url: "/administracion/cargo-tipo-contrato",
+          url: "/dashboard/administracion/cargo-tipo-contrato",
         },
         {
           title: "Condiciones Contrato",
-          url: "/administracion/condiciones-contrato",
+          url: "/dashboard/administracion/condiciones-contrato",
         },
       ],
     },
@@ -180,47 +180,47 @@ const data = {
       items: [
         {
           title: "Zonas",
-          url: "/mantencion/zonas",
+          url: "/dashboard/mantencion/zonas",
         },
         {
           title: "Sector",
-          url: "/mantencion/sector",
+          url: "/dashboard/mantencion/sectores",
         },
         {
           title: "Nichos",
-          url: "/mantencion/nichos",
+          url: "/dashboard/mantencion/nichos",
         },
         {
           title: "Empalmes",
-          url: "/mantencion/empalmes",
+          url: "/dashboard/mantencion/empalmes",
         },
         {
           title: "Marcas",
-          url: "/mantencion/marcas",
+          url: "/dashboard/mantencion/marcas",
         },
         {
           title: "Ciclos Facturación",
-          url: "/mantencion/ciclos-facturacion",
+          url: "/dashboard/mantencion/ciclos-facturacion",
         },
         {
           title: "Claves",
-          url: "/mantencion/claves",
+          url: "/dashboard/mantencion/claves",
         },
         {
           title: "Tipos Contrato",
-          url: "/mantencion/tipos-contratos",
+          url: "/dashboard/mantencion/tipos-contrato",
         },
         {
           title: "Conceptos",
-          url: "/mantencion/conceptos",
+          url: "/dashboard/mantencion/conceptos",
         },
         {
           title: "Tarifas",
-          url: "/mantencion/tarifas",
+          url: "/dashboard/mantencion/tarifas",
         },
         {
           title: "Parametros",
-          url: "/mantencion/parametros",
+          url: "/dashboard/mantencion/parametros",
         },
       ],
     },
@@ -231,11 +231,11 @@ const data = {
       items: [
         {
           title: "Consultar Contrato",
-          url: "/reportes/consultar-contrato",
+          url: "/dashboard/reportes/consultar-contrato",
         },
         {
           title: "Resumen Facturación",
-          url: "/reportes/resumen-facturacion",
+          url: "/dashboard/reportes/resumen-facturacion",
         },
       ],
     },
@@ -246,7 +246,7 @@ const data = {
       items: [
         {
           title: "Roles y Permisos",
-          url: "/configuracion/roles-permisos",
+          url: "/dashboard/configuracion/roles-permisos",
         },
       ],
     },

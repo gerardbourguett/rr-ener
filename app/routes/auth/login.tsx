@@ -5,7 +5,7 @@ import { isAuthenticated } from "~/services/auth";
 export async function clientLoader() {
   // If already authenticated, redirect to home
   if (isAuthenticated()) {
-    throw redirect("/");
+    throw redirect("/dashboard");
   }
   return null;
 }
